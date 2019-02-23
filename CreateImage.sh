@@ -22,7 +22,7 @@ cat << EOF > ${APPDIR}/smartgit.desktop
 Version=1.0
 Encoding=UTF-8
 Name=SmartGit
-Keywords=git
+Keywords=git;
 Comment=Git-Client
 Type=Application
 Categories=Development;RevisionControl;
