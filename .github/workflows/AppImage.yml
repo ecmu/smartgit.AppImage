@@ -1,0 +1,26 @@
+name: AppImage Build
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  build:
+    #ubuntu bionic:
+    #runs-on: ubuntu-18.04
+  
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@master
+  
+    - name: Executing AppImage build
+      run: bash ./make_appimage.sh
+  
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: True
+        tag: ${{ github.ref_name }}
+        name: "Release build (${{ github.ref_name }})"
+        artifacts: "*.AppImage"
+        token: ${{ secrets.GITHUB_TOKEN }}
